@@ -8,14 +8,25 @@ class TradePlan:
     sl: float
     tp: float
 
+from dataclasses import dataclass
+from typing import Optional
+from .fvg import FVGZone
+
+@dataclass
+class TradePlan:
+    entry: float
+    sl: float
+    tp: float
+
 @dataclass
 class Signal:
     symbol: str
     fvg: FVGZone
     direction: str
-    liquidity: Optional[str]
-    reason: str
-    plan: TradePlan
+    liquidity: Optional[str] = None
+    reason: str = ""
+    plan: TradePlan = None
+    tf: Optional[str] = None
 
 def build_signal_text(sig: Signal) -> str:
     liq = sig.liquidity or "—"

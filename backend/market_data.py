@@ -28,3 +28,13 @@ def get_klines(symbol="BTCUSDT", interval="1h", limit=100):
         })
 
     return candles
+
+
+def get_multi_tf_klines(symbol="BTCUSDT"):
+    intervals = ["1h", "4h", "1d", "1w", "1M"]
+    data = {}
+
+    for interval in intervals:
+        data[interval] = get_klines(symbol=symbol, interval=interval)
+
+    return data
